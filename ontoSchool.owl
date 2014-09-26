@@ -24,19 +24,28 @@
         <Class IRI="#Agenda"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Cliente"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Clinica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Consulta"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Dia"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Empresa"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Endereco"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Execucao"/>
+        <Class IRI="#Horario"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Horario"/>
+        <Class IRI="#Medico"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pessoa"/>
@@ -54,7 +63,13 @@
         <ObjectProperty IRI="#aceitoPor"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#fazConsulta"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#temAgenda"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temCliente"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temDataDisponivel"/>
@@ -66,10 +81,13 @@
         <ObjectProperty IRI="#temEndereco"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#temExecucao"/>
+        <ObjectProperty IRI="#temFilial"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temHorario"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temMedico"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temPlano"/>
@@ -96,6 +114,9 @@
         <DataProperty IRI="#nome"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="#qualificacao"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="#razaoSocial"/>
     </Declaration>
     <Declaration>
@@ -104,20 +125,131 @@
     <Declaration>
         <DataProperty IRI="#valor"/>
     </Declaration>
+    <SubClassOf>
+        <Class IRI="#Cliente"/>
+        <Class IRI="#Pessoa"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Horario"/>
+        <ObjectIntersectionOf>
+            <DataAllValuesFrom>
+                <DataProperty IRI="#horaFim"/>
+                <Datatype abbreviatedIRI="xsd:dateTime"/>
+            </DataAllValuesFrom>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#horaFim"/>
+                <Datatype abbreviatedIRI="xsd:dateTime"/>
+            </DataExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Horario"/>
+        <ObjectIntersectionOf>
+            <DataAllValuesFrom>
+                <DataProperty IRI="#horaInicio"/>
+                <Datatype abbreviatedIRI="xsd:dateTime"/>
+            </DataAllValuesFrom>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#horaInicio"/>
+                <Datatype abbreviatedIRI="xsd:dateTime"/>
+            </DataExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medico"/>
+        <Class IRI="#Pessoa"/>
+    </SubClassOf>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temCliente"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </FunctionalObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#fazConsulta"/>
+    </SymmetricObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#temFilial"/>
+    </SymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temCliente"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temDataDisponivel"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temDataIndisponivel"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temHorario"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#temPlano"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#aceitoPor"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#fazConsulta"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temCliente"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temDataDisponivel"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temDataIndisponivel"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temEndereco"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temFilial"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temHorario"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#temPlano"/>
+    </IrreflexiveObjectProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#aceita"/>
-        <Class IRI="#Clinica"/>
+        <Class IRI="#Empresa"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#aceitoPor"/>
         <Class IRI="#Plano"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#fazConsulta"/>
+        <Class IRI="#Medico"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#temAgenda"/>
-        <ObjectUnionOf>
-            <Class IRI="#Clinica"/>
-            <Class IRI="#Pessoa"/>
-        </ObjectUnionOf>
+        <Class IRI="#Pessoa"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temCliente"/>
+        <Class IRI="#Consulta"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temDataDisponivel"/>
@@ -135,12 +267,16 @@
         </ObjectUnionOf>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#temExecucao"/>
-        <Class IRI="#Clinica"/>
+        <ObjectProperty IRI="#temFilial"/>
+        <Class IRI="#Empresa"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temHorario"/>
         <Class IRI="#Dia"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temMedico"/>
+        <Class IRI="#Clinica"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temPlano"/>
@@ -156,11 +292,19 @@
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#aceitoPor"/>
-        <Class IRI="#Clinica"/>
+        <Class IRI="#Empresa"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#fazConsulta"/>
+        <Class IRI="#Consulta"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temAgenda"/>
         <Class IRI="#Agenda"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temCliente"/>
+        <Class IRI="#Cliente"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temDataDisponivel"/>
@@ -175,12 +319,16 @@
         <Class IRI="#Endereco"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="#temExecucao"/>
-        <Class IRI="#Execucao"/>
+        <ObjectProperty IRI="#temFilial"/>
+        <Class IRI="#Clinica"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temHorario"/>
         <Class IRI="#Horario"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temMedico"/>
+        <Class IRI="#Medico"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temPlano"/>
@@ -190,6 +338,24 @@
         <ObjectProperty IRI="#temServico"/>
         <Class IRI="#Servico"/>
     </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#cidade"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#lat"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#long"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#nome"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#razaoSocial"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#rua"/>
+    </FunctionalDataProperty>
     <DataPropertyDomain>
         <DataProperty IRI="#cidade"/>
         <Class IRI="#Endereco"/>
@@ -219,8 +385,12 @@
         </ObjectUnionOf>
     </DataPropertyDomain>
     <DataPropertyDomain>
+        <DataProperty IRI="#qualificacao"/>
+        <Class IRI="#Consulta"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="#razaoSocial"/>
-        <Class IRI="#Clinica"/>
+        <Class IRI="#Empresa"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#rua"/>
@@ -253,6 +423,16 @@
     <DataPropertyRange>
         <DataProperty IRI="#nome"/>
         <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#qualificacao"/>
+        <DataOneOf>
+            <Literal datatypeIRI="&rdf;PlainLiteral">bom</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">exelente</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">moderado</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">péssimo</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">ruim</Literal>
+        </DataOneOf>
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="#razaoSocial"/>
