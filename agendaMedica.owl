@@ -11,16 +11,18 @@
 
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
      xml:base="http://www.semanticweb.org/armando/ontologies/2014/8/untitled-ontology-48"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.semanticweb.org/armando/ontologies/2014/8/untitled-ontology-48">
     <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://nees.com.br/boa-moradia/crawler/Locality.owl</Import>
+    <Import>http://xmlns.com/foaf/0.1/</Import>
     <Declaration>
         <Class IRI="#Agenda"/>
     </Declaration>
@@ -82,9 +84,6 @@
         <DataProperty IRI="#CNPJ"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#cidade"/>
-    </Declaration>
-    <Declaration>
         <DataProperty IRI="#data"/>
     </Declaration>
     <Declaration>
@@ -104,9 +103,6 @@
     </Declaration>
     <Declaration>
         <DataProperty IRI="#razaoSocial"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#rua"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#valor"/>
@@ -135,6 +131,14 @@
     <Declaration>
         <NamedIndividual IRI="#odontologia"/>
     </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://nees.com.br/boa-moradia/crawler/Locality.owl#Address"/>
+        <Class IRI="#Endereco"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://schema.org/Person"/>
+        <Class IRI="#Pessoa"/>
+    </EquivalentClasses>
     <SubClassOf>
         <Class IRI="#Clinica"/>
         <ObjectMinCardinality cardinality="1">
@@ -257,11 +261,6 @@
         <Literal datatypeIRI="&xsd;string">Manoel</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
-        <DataProperty IRI="#cidade"/>
-        <NamedIndividual IRI="#endereco1"/>
-        <Literal datatypeIRI="&xsd;string">Maceió</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
         <DataProperty IRI="#lat"/>
         <NamedIndividual IRI="#endereco1"/>
         <Literal datatypeIRI="&xsd;double">0.0</Literal>
@@ -270,11 +269,6 @@
         <DataProperty IRI="#long"/>
         <NamedIndividual IRI="#endereco1"/>
         <Literal datatypeIRI="&xsd;double">0.0</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#rua"/>
-        <NamedIndividual IRI="#endereco1"/>
-        <Literal datatypeIRI="&xsd;string">Alameda dos Anjos</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#nome"/>
@@ -287,12 +281,12 @@
         <Literal datatypeIRI="&xsd;string">Odontologia</Literal>
     </DataPropertyAssertion>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#aceitoPor"/>
         <ObjectProperty IRI="#aceita"/>
+        <ObjectProperty IRI="#aceitoPor"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#agendaPertenceA"/>
         <ObjectProperty IRI="#temAgenda"/>
+        <ObjectProperty IRI="#agendaPertenceA"/>
     </InverseObjectProperties>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#agendaPertenceA"/>
@@ -461,11 +455,12 @@
         <ObjectProperty IRI="#usaPlano"/>
         <Class IRI="#Plano"/>
     </ObjectPropertyRange>
+    <EquivalentDataProperties>
+        <DataProperty IRI="#nome"/>
+        <DataProperty IRI="http://xmlns.com/foaf/0.1/name"/>
+    </EquivalentDataProperties>
     <FunctionalDataProperty>
         <DataProperty IRI="#CNPJ"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="#cidade"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
         <DataProperty IRI="#descricao"/>
@@ -485,16 +480,9 @@
     <FunctionalDataProperty>
         <DataProperty IRI="#razaoSocial"/>
     </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="#rua"/>
-    </FunctionalDataProperty>
     <DataPropertyDomain>
         <DataProperty IRI="#CNPJ"/>
         <Class IRI="#Clinica"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#cidade"/>
-        <Class IRI="#Endereco"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#data"/>
@@ -525,19 +513,11 @@
         <Class IRI="#Clinica"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="#rua"/>
-        <Class IRI="#Endereco"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
         <DataProperty IRI="#valor"/>
         <Class IRI="#Plano"/>
     </DataPropertyDomain>
     <DataPropertyRange>
         <DataProperty IRI="#CNPJ"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#cidade"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
@@ -575,10 +555,6 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
-        <DataProperty IRI="#rua"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
         <DataProperty IRI="#valor"/>
         <Datatype abbreviatedIRI="xsd:double"/>
     </DataPropertyRange>
@@ -586,5 +562,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
 
