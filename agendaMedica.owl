@@ -31,16 +31,10 @@
         <Class IRI="#Consulta"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Dia"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Endereco"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Especialidade"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Horario"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Medico"/>
@@ -61,22 +55,19 @@
         <ObjectProperty IRI="#aceitoPor"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#ofereceConsulta"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temAgenda"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#temDia"/>
-    </Declaration>
-    <Declaration>
         <ObjectProperty IRI="#temEndereco"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temEspecialidade"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="#temHorario"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temMedico"/>
@@ -88,13 +79,16 @@
         <ObjectProperty IRI="#usaPlano"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="#CNPJ"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="#cidade"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#horaFim"/>
+        <DataProperty IRI="#data"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#horaInicio"/>
+        <DataProperty IRI="#descricao"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#lat"/>
@@ -118,13 +112,22 @@
         <DataProperty IRI="#valor"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#Clinica"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Joao"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Manoel"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#agenda1"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#consulta1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#endereco1"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#fisioterapia"/>
@@ -132,6 +135,13 @@
     <Declaration>
         <NamedIndividual IRI="#odontologia"/>
     </Declaration>
+    <SubClassOf>
+        <Class IRI="#Clinica"/>
+        <ObjectMinCardinality cardinality="1">
+            <ObjectProperty IRI="#temMedico"/>
+            <Class IRI="#Medico"/>
+        </ObjectMinCardinality>
+    </SubClassOf>
     <SubClassOf>
         <Class IRI="#Clinica"/>
         <ObjectExactCardinality cardinality="1">
@@ -147,15 +157,22 @@
         </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Consulta"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#temMedico"/>
+            <Class IRI="#Medico"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Medico"/>
         <Class IRI="#Pessoa"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Medico"/>
-        <ObjectMinCardinality cardinality="1">
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#temEspecialidade"/>
             <Class IRI="#Especialidade"/>
-        </ObjectMinCardinality>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Paciente"/>
@@ -168,6 +185,19 @@
             <Class IRI="#Endereco"/>
         </ObjectExactCardinality>
     </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Agenda"/>
+        <Class IRI="#Clinica"/>
+        <Class IRI="#Consulta"/>
+        <Class IRI="#Endereco"/>
+        <Class IRI="#Especialidade"/>
+        <Class IRI="#Pessoa"/>
+        <Class IRI="#Plano"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Clinica"/>
+        <NamedIndividual IRI="#Clinica"/>
+    </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Medico"/>
         <NamedIndividual IRI="#Joao"/>
@@ -177,8 +207,16 @@
         <NamedIndividual IRI="#Manoel"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#Agenda"/>
+        <NamedIndividual IRI="#agenda1"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#Consulta"/>
         <NamedIndividual IRI="#consulta1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Endereco"/>
+        <NamedIndividual IRI="#endereco1"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Especialidade"/>
@@ -188,6 +226,16 @@
         <Class IRI="#Especialidade"/>
         <NamedIndividual IRI="#odontologia"/>
     </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#temMedico"/>
+        <NamedIndividual IRI="#Clinica"/>
+        <NamedIndividual IRI="#Joao"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <NamedIndividual IRI="#agenda1"/>
+        <NamedIndividual IRI="#Joao"/>
+    </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#temMedico"/>
         <NamedIndividual IRI="#consulta1"/>
@@ -209,6 +257,26 @@
         <Literal datatypeIRI="&xsd;string">Manoel</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="#cidade"/>
+        <NamedIndividual IRI="#endereco1"/>
+        <Literal datatypeIRI="&xsd;string">Maceió</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#lat"/>
+        <NamedIndividual IRI="#endereco1"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#long"/>
+        <NamedIndividual IRI="#endereco1"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#rua"/>
+        <NamedIndividual IRI="#endereco1"/>
+        <Literal datatypeIRI="&xsd;string">Alameda dos Anjos</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="#nome"/>
         <NamedIndividual IRI="#fisioterapia"/>
         <Literal datatypeIRI="&xsd;string">Fisioterapia</Literal>
@@ -222,6 +290,13 @@
         <ObjectProperty IRI="#aceitoPor"/>
         <ObjectProperty IRI="#aceita"/>
     </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <ObjectProperty IRI="#temAgenda"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#temAgenda"/>
     </FunctionalObjectProperty>
@@ -231,6 +306,12 @@
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#temPaciente"/>
     </FunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#temAgenda"/>
+    </InverseFunctionalObjectProperty>
     <SymmetricObjectProperty>
         <ObjectProperty IRI="#ofereceConsulta"/>
     </SymmetricObjectProperty>
@@ -241,19 +322,16 @@
         <ObjectProperty IRI="#aceitoPor"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
-        <ObjectProperty IRI="#temAgenda"/>
+        <ObjectProperty IRI="#agendaPertenceA"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
-        <ObjectProperty IRI="#temDia"/>
+        <ObjectProperty IRI="#temAgenda"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#temEndereco"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#temEspecialidade"/>
-    </AsymmetricObjectProperty>
-    <AsymmetricObjectProperty>
-        <ObjectProperty IRI="#temHorario"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#temMedico"/>
@@ -271,22 +349,19 @@
         <ObjectProperty IRI="#aceitoPor"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#ofereceConsulta"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#temAgenda"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
-        <ObjectProperty IRI="#temDia"/>
-    </IrreflexiveObjectProperty>
-    <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#temEndereco"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#temEspecialidade"/>
-    </IrreflexiveObjectProperty>
-    <IrreflexiveObjectProperty>
-        <ObjectProperty IRI="#temHorario"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#temMedico"/>
@@ -306,16 +381,16 @@
         <Class IRI="#Plano"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <Class IRI="#Agenda"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#ofereceConsulta"/>
         <Class IRI="#Clinica"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temAgenda"/>
-        <Class IRI="#Pessoa"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="#temDia"/>
-        <Class IRI="#Agenda"/>
+        <Class IRI="#Medico"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temEndereco"/>
@@ -332,12 +407,11 @@
         </ObjectUnionOf>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#temHorario"/>
-        <Class IRI="#Dia"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
         <ObjectProperty IRI="#temMedico"/>
-        <Class IRI="#Consulta"/>
+        <ObjectUnionOf>
+            <Class IRI="#Clinica"/>
+            <Class IRI="#Consulta"/>
+        </ObjectUnionOf>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#temPaciente"/>
@@ -356,6 +430,10 @@
         <Class IRI="#Clinica"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#agendaPertenceA"/>
+        <Class IRI="#Medico"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#ofereceConsulta"/>
         <Class IRI="#Consulta"/>
     </ObjectPropertyRange>
@@ -364,20 +442,12 @@
         <Class IRI="#Agenda"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="#temDia"/>
-        <Class IRI="#Dia"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
         <ObjectProperty IRI="#temEndereco"/>
         <Class IRI="#Endereco"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temEspecialidade"/>
         <Class IRI="#Especialidade"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="#temHorario"/>
-        <Class IRI="#Horario"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#temMedico"/>
@@ -392,13 +462,13 @@
         <Class IRI="#Plano"/>
     </ObjectPropertyRange>
     <FunctionalDataProperty>
+        <DataProperty IRI="#CNPJ"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
         <DataProperty IRI="#cidade"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
-        <DataProperty IRI="#horaFim"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="#horaInicio"/>
+        <DataProperty IRI="#descricao"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
         <DataProperty IRI="#lat"/>
@@ -410,22 +480,25 @@
         <DataProperty IRI="#nome"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
+        <DataProperty IRI="#qualificacao"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
         <DataProperty IRI="#razaoSocial"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
         <DataProperty IRI="#rua"/>
     </FunctionalDataProperty>
     <DataPropertyDomain>
+        <DataProperty IRI="#CNPJ"/>
+        <Class IRI="#Clinica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="#cidade"/>
         <Class IRI="#Endereco"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="#horaFim"/>
-        <Class IRI="#Horario"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#horaInicio"/>
-        <Class IRI="#Horario"/>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#Agenda"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#lat"/>
@@ -460,16 +533,20 @@
         <Class IRI="#Plano"/>
     </DataPropertyDomain>
     <DataPropertyRange>
+        <DataProperty IRI="#CNPJ"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
         <DataProperty IRI="#cidade"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
-        <DataProperty IRI="#horaFim"/>
+        <DataProperty IRI="#data"/>
         <Datatype abbreviatedIRI="xsd:dateTime"/>
     </DataPropertyRange>
     <DataPropertyRange>
-        <DataProperty IRI="#horaInicio"/>
-        <Datatype abbreviatedIRI="xsd:dateTime"/>
+        <DataProperty IRI="#descricao"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="#lat"/>
