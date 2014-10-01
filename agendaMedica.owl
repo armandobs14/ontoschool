@@ -90,12 +90,6 @@
         <DataProperty IRI="#descricao"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#lat"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#long"/>
-    </Declaration>
-    <Declaration>
         <DataProperty IRI="#nome"/>
     </Declaration>
     <Declaration>
@@ -259,16 +253,6 @@
         <DataProperty IRI="#nome"/>
         <NamedIndividual IRI="#Manoel"/>
         <Literal datatypeIRI="&xsd;string">Manoel</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#lat"/>
-        <NamedIndividual IRI="#endereco1"/>
-        <Literal datatypeIRI="&xsd;double">0.0</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#long"/>
-        <NamedIndividual IRI="#endereco1"/>
-        <Literal datatypeIRI="&xsd;double">0.0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#nome"/>
@@ -466,12 +450,6 @@
         <DataProperty IRI="#descricao"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
-        <DataProperty IRI="#lat"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="#long"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
         <DataProperty IRI="#nome"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
@@ -487,14 +465,6 @@
     <DataPropertyDomain>
         <DataProperty IRI="#data"/>
         <Class IRI="#Agenda"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#lat"/>
-        <Class IRI="#Endereco"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#long"/>
-        <Class IRI="#Endereco"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#nome"/>
@@ -527,14 +497,6 @@
     <DataPropertyRange>
         <DataProperty IRI="#descricao"/>
         <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#lat"/>
-        <Datatype abbreviatedIRI="xsd:double"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#long"/>
-        <Datatype abbreviatedIRI="xsd:double"/>
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="#nome"/>
