@@ -1,0 +1,707 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns="http://nees.com.br/tut/Viagem.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://nees.com.br/tut/Viagem.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Aeroporto"/>
+  <owl:Class rdf:ID="Contato"/>
+  <owl:Class rdf:ID="Companhia_Aerea"/>
+  <owl:Class rdf:ID="Passagem"/>
+  <owl:Class rdf:ID="Endereco"/>
+  <owl:Class rdf:ID="Voo"/>
+  <owl:Class rdf:ID="Aviao"/>
+  <owl:ObjectProperty rdf:ID="tem_passagem">
+    <rdfs:range rdf:resource="#Passagem"/>
+    <rdfs:domain rdf:resource="#Voo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="possui_contato">
+    <rdfs:range rdf:resource="#Contato"/>
+    <rdfs:domain rdf:resource="#Companhia_Aerea"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="possui_companhia_aerea">
+    <rdfs:domain rdf:resource="#Aeroporto"/>
+    <rdfs:range rdf:resource="#Companhia_Aerea"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="aeroporto_destino">
+    <rdfs:domain rdf:resource="#Voo"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Aeroporto"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="executado_por_aviao">
+    <rdfs:domain rdf:resource="#Voo"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Aviao"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="possui_endereco">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Aeroporto"/>
+          <owl:Class rdf:about="#Companhia_Aerea"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Endereco"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relacionado_ao_voo">
+    <rdfs:range rdf:resource="#Voo"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Passagem"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="aeroporto_origem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Voo"/>
+    <rdfs:range rdf:resource="#Aeroporto"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="email">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Contato"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="quantidade_de_passageiros">
+    <rdfs:domain rdf:resource="#Aviao"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="altitude_maxima">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="rua">
+    <rdfs:domain rdf:resource="#Endereco"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="estado">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Endereco"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="tipo">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Aviao"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="pais">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Endereco"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="duracao">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Voo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="CNPJ">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Companhia_Aerea"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="data">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain rdf:resource="#Passagem"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="telefone">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Contato"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="preco">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#Passagem"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="SAC">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="site">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Contato"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="velocidade_maxima">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Aviao"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="cidade">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Endereco"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="codigo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Aviao"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="bairro">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Endereco"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="nome">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Companhia_Aerea"/>
+          <owl:Class rdf:about="#Aeroporto"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="gerenciado_por_companhiaAerea">
+    <rdfs:domain rdf:resource="#Voo"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Companhia_Aerea"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:ID="gerencia_voos">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Voo"/>
+    <rdfs:domain rdf:resource="#Companhia_Aerea"/>
+  </owl:InverseFunctionalProperty>
+  <Voo rdf:ID="Voo_TAM_Salvador_BH">
+    <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >95</duracao>
+    <aeroporto_destino>
+      <Aeroporto rdf:ID="Aeroporto_Belo_Horizonte">
+        <possui_endereco>
+          <Endereco rdf:ID="Endereco_Aeroporto_Belo_Horizonte">
+            <rua rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Rodovia MG-10</rua>
+            <pais rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Brasil</pais>
+            <estado rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Minas Gerais</estado>
+            <cidade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Confins e Lagoa Santa</cidade>
+          </Endereco>
+        </possui_endereco>
+        <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Aeroporto Internacional Tancredo Neves</nome>
+        <possui_companhia_aerea>
+          <Companhia_Aerea rdf:ID="Companhia_Aerea_GOL">
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Salvador_BH">
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Salvador_BH">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Salvador_BH"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >609.0</preco>
+                  </Passagem>
+                </tem_passagem>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >90</duracao>
+                <executado_por_aviao>
+                  <Aviao rdf:ID="Aviao_777">
+                    <quantidade_de_passageiros rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                    >362</quantidade_de_passageiros>
+                    <velocidade_maxima rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >896.0</velocidade_maxima>
+                    <tipo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Boeing</tipo>
+                    <codigo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >777</codigo>
+                  </Aviao>
+                </executado_por_aviao>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_origem>
+                  <Aeroporto rdf:ID="Aeroporto_Salvador">
+                    <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Luís Eduardo Magalhães</nome>
+                    <possui_endereco>
+                      <Endereco rdf:ID="Endereco_Aeroporto_Salvador">
+                        <estado rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Bahia</estado>
+                        <rua rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Praca Gago Coutinho s/nº</rua>
+                        <pais rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Brasil</pais>
+                        <cidade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Salvador</cidade>
+                      </Endereco>
+                    </possui_endereco>
+                    <possui_companhia_aerea rdf:resource="#Companhia_Aerea_GOL"/>
+                    <possui_companhia_aerea>
+                      <Companhia_Aerea rdf:ID="Companhia_Aerea_Tam">
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_BH_Brasilia">
+                            <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                            <aeroporto_destino>
+                              <Aeroporto rdf:ID="Aeroporto_Brasilia">
+                                <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Presidente Juscelino Kubitschek</nome>
+                                <possui_endereco>
+                                  <Endereco rdf:ID="Endereco_Aeroporto_Brasilia">
+                                    <rua rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Aeroporto Internacional de Brasília s/nº, Área Especial</rua>
+                                    <pais rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Brasil</pais>
+                                    <estado rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Distrito Federal</estado>
+                                    <bairro rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Lago Sul</bairro>
+                                    <cidade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Brasilia</cidade>
+                                  </Endereco>
+                                </possui_endereco>
+                                <possui_companhia_aerea rdf:resource="#Companhia_Aerea_Tam"/>
+                                <possui_companhia_aerea rdf:resource="#Companhia_Aerea_GOL"/>
+                              </Aeroporto>
+                            </aeroporto_destino>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_BH_Brasilia">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >142.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_BH_Brasilia"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >74</duracao>
+                          </Voo>
+                        </gerencia_voos>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Brasilia_BH">
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Brasilia_BH">
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Brasilia_BH"/>
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >361.0</preco>
+                              </Passagem>
+                            </tem_passagem>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >67</duracao>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Guarulhos_Brasilia">
+                            <gerencia_voos rdf:resource="#Companhia_Aerea_Tam"/>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >108</duracao>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <aeroporto_origem>
+                              <Aeroporto rdf:ID="Aeroporto_Guarulhos">
+                                <possui_endereco>
+                                  <Endereco rdf:ID="Endereco_Aeroporto_Guarulhos">
+                                    <pais rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Brasil</pais>
+                                    <estado rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >São Paulo</estado>
+                                    <rua rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Av. Jamil João Zarif</rua>
+                                    <cidade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Guarulhos</cidade>
+                                  </Endereco>
+                                </possui_endereco>
+                                <possui_companhia_aerea rdf:resource="#Companhia_Aerea_GOL"/>
+                                <possui_companhia_aerea rdf:resource="#Companhia_Aerea_Tam"/>
+                                <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >Governador André Franco Montoro</nome>
+                              </Aeroporto>
+                            </aeroporto_origem>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Guarulhos_Brasilia">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >429.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Guarulhos_Brasilia"/>
+                              </Passagem>
+                            </tem_passagem>
+                          </Voo>
+                        </gerencia_voos>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Guarulhos_BH">
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Guarulhos_BH">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >307.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Guarulhos_BH"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Guarulhos"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >70</duracao>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <possui_endereco rdf:resource="#Endereco_Aeroporto_Brasilia"/>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Salvador_Brasilia">
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Salvador_Brasilia">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >505.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Salvador_Brasilia"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Salvador"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >114</duracao>
+                          </Voo>
+                        </gerencia_voos>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_BH_Guarulhos">
+                            <aeroporto_destino rdf:resource="#Aeroporto_Guarulhos"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >67</duracao>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_BH_Guarulhos">
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_BH_Guarulhos"/>
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >352.0</preco>
+                              </Passagem>
+                            </tem_passagem>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <possui_companhia_aerea rdf:resource="#Aeroporto_Brasilia"/>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Salvador_Guarulhos">
+                            <aeroporto_destino rdf:resource="#Aeroporto_Guarulhos"/>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Salvador"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >143</duracao>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Salvador_Guarulhos">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >350.0</preco>
+                                <relacionado_ao_voo>
+                                  <Voo rdf:ID="Voo_GOL_Salvador_Guarulhos">
+                                    <executado_por_aviao rdf:resource="#Aviao_777"/>
+                                    <tem_passagem>
+                                      <Passagem rdf:ID="Passagem_GOL_Salvador_Guarulhos">
+                                        <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                        >500.0</preco>
+                                        <relacionado_ao_voo rdf:resource="#Voo_GOL_Salvador_Guarulhos"/>
+                                      </Passagem>
+                                    </tem_passagem>
+                                    <aeroporto_origem rdf:resource="#Aeroporto_Salvador"/>
+                                    <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                                    <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >105</duracao>
+                                    <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                                  </Voo>
+                                </relacionado_ao_voo>
+                              </Passagem>
+                            </tem_passagem>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <CNPJ rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >02.012.862/0001-60</CNPJ>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Brasilia_Guarulhos">
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >100</duracao>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Brasilia_Guarulhos">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >359.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Brasilia_Guarulhos"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Guarulhos"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_BH_Salvador">
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_BH_Salvador">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >310.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_BH_Salvador"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >100</duracao>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                          </Voo>
+                        </gerencia_voos>
+                        <possui_endereco rdf:resource="#Endereco_Aeroporto_Belo_Horizonte"/>
+                        <possui_endereco rdf:resource="#Endereco_Aeroporto_Guarulhos"/>
+                        <gerencia_voos rdf:resource="#Voo_TAM_Salvador_BH"/>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Brasilia_Salvador">
+                            <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Brasilia_Salvador">
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Brasilia_Salvador"/>
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >515.0</preco>
+                              </Passagem>
+                            </tem_passagem>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >117</duracao>
+                          </Voo>
+                        </gerencia_voos>
+                        <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >TAM Linhas Aereas</nome>
+                        <possui_contato>
+                          <Contato rdf:ID="Contato_TAM">
+                            <site xml:lang="pt">www.tam.com.br</site>
+                          </Contato>
+                        </possui_contato>
+                        <possui_endereco rdf:resource="#Endereco_Aeroporto_Salvador"/>
+                        <gerencia_voos>
+                          <Voo rdf:ID="Voo_TAM_Guarulhos_Salvador">
+                            <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                            <aeroporto_origem rdf:resource="#Aeroporto_Guarulhos"/>
+                            <tem_passagem>
+                              <Passagem rdf:ID="Passagem_TAM_Guarulhos_Salvador">
+                                <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >424.0</preco>
+                                <relacionado_ao_voo rdf:resource="#Voo_TAM_Guarulhos_Salvador"/>
+                              </Passagem>
+                            </tem_passagem>
+                            <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+                            <executado_por_aviao rdf:resource="#Aviao_777"/>
+                            <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >140</duracao>
+                          </Voo>
+                        </gerencia_voos>
+                      </Companhia_Aerea>
+                    </possui_companhia_aerea>
+                  </Aeroporto>
+                </aeroporto_origem>
+                <aeroporto_destino rdf:resource="#Aeroporto_Belo_Horizonte"/>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_BH_Brasilia">
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >69</duracao>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_BH_Brasilia">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_BH_Brasilia"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >479.0</preco>
+                  </Passagem>
+                </tem_passagem>
+                <gerencia_voos rdf:resource="#Companhia_Aerea_GOL"/>
+              </Voo>
+            </gerencia_voos>
+            <possui_companhia_aerea rdf:resource="#Aeroporto_Salvador"/>
+            <possui_endereco rdf:resource="#Endereco_Aeroporto_Salvador"/>
+            <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >GOL Linhas Aereas Inteligentes</nome>
+            <possui_companhia_aerea rdf:resource="#Aeroporto_Belo_Horizonte"/>
+            <CNPJ rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >06.164.253/0001-87</CNPJ>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Brasilia_BH">
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >80</duracao>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Brasilia_BH">
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >479.0</preco>
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Brasilia_BH"/>
+                  </Passagem>
+                </tem_passagem>
+                <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Brasilia_Guarulhos">
+                <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Guarulhos"/>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >105</duracao>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Brasilia_Guarulhos">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Brasilia_Guarulhos"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >384.0</preco>
+                  </Passagem>
+                </tem_passagem>
+              </Voo>
+            </gerencia_voos>
+            <possui_companhia_aerea rdf:resource="#Aeroporto_Guarulhos"/>
+            <gerencia_voos rdf:resource="#Voo_GOL_Salvador_Guarulhos"/>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Guarulhos_BH">
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >62</duracao>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <aeroporto_origem rdf:resource="#Aeroporto_Guarulhos"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Guarulhos_BH">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Guarulhos_BH"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >362.0</preco>
+                  </Passagem>
+                </tem_passagem>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Guarulhos_Salvador">
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >140</duracao>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                <aeroporto_origem rdf:resource="#Aeroporto_Guarulhos"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Guarulhos_Salvador">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Guarulhos_Salvador"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >440.0</preco>
+                  </Passagem>
+                </tem_passagem>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_BH_Guarulhos">
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Guarulhos"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >90</duracao>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_BH_Guarulhos">
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >479.0</preco>
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_BH_Guarulhos"/>
+                  </Passagem>
+                </tem_passagem>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Brasilia_Salvador">
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_origem rdf:resource="#Aeroporto_Brasilia"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Brasilia_Salvador">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Brasilia_Salvador"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >519.0</preco>
+                  </Passagem>
+                </tem_passagem>
+                <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >110</duracao>
+              </Voo>
+            </gerencia_voos>
+            <possui_endereco rdf:resource="#Endereco_Aeroporto_Belo_Horizonte"/>
+            <possui_contato>
+              <Contato rdf:ID="Contato_GOL">
+                <site xml:lang="pt">www.voegol.com.br</site>
+              </Contato>
+            </possui_contato>
+            <possui_endereco rdf:resource="#Endereco_Aeroporto_Guarulhos"/>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Guarulhos_Brasilia">
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >100</duracao>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Guarulhos_Brasilia">
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Guarulhos_Brasilia"/>
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >384.0</preco>
+                  </Passagem>
+                </tem_passagem>
+                <aeroporto_origem rdf:resource="#Aeroporto_Guarulhos"/>
+              </Voo>
+            </gerencia_voos>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_Salvador_Brasilia">
+                <aeroporto_origem rdf:resource="#Aeroporto_Salvador"/>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_Salvador_Brasilia">
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >520.0</preco>
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_Salvador_Brasilia"/>
+                  </Passagem>
+                </tem_passagem>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Brasilia"/>
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >110</duracao>
+              </Voo>
+            </gerencia_voos>
+            <possui_endereco rdf:resource="#Endereco_Aeroporto_Brasilia"/>
+            <gerencia_voos>
+              <Voo rdf:ID="Voo_GOL_BH_Salvador">
+                <duracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >90</duracao>
+                <aeroporto_origem rdf:resource="#Aeroporto_Belo_Horizonte"/>
+                <aeroporto_destino rdf:resource="#Aeroporto_Salvador"/>
+                <tem_passagem>
+                  <Passagem rdf:ID="Passagem_GOL_BH_Salvador">
+                    <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >499.0</preco>
+                    <relacionado_ao_voo rdf:resource="#Voo_GOL_BH_Salvador"/>
+                  </Passagem>
+                </tem_passagem>
+                <executado_por_aviao rdf:resource="#Aviao_777"/>
+                <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_GOL"/>
+              </Voo>
+            </gerencia_voos>
+          </Companhia_Aerea>
+        </possui_companhia_aerea>
+        <possui_companhia_aerea rdf:resource="#Companhia_Aerea_Tam"/>
+      </Aeroporto>
+    </aeroporto_destino>
+    <aeroporto_origem rdf:resource="#Aeroporto_Salvador"/>
+    <executado_por_aviao rdf:resource="#Aviao_777"/>
+    <tem_passagem>
+      <Passagem rdf:ID="Passagem_TAM_Salvador_BH">
+        <preco rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >378.0</preco>
+        <relacionado_ao_voo rdf:resource="#Voo_TAM_Salvador_BH"/>
+      </Passagem>
+    </tem_passagem>
+    <gerenciado_por_companhiaAerea rdf:resource="#Companhia_Aerea_Tam"/>
+  </Voo>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.8, Build 629)  http://protege.stanford.edu -->
